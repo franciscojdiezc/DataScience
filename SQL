@@ -1,0 +1,16 @@
+SELECT
+		 "Matricula",
+		 GROUP_FIRST("Punto Venta"),
+		 DATE(GROUP_FIRST("Fecha Venta")),
+		 GROUP_FIRST("Kms Medios"),
+		 SUM("Mg Bruto"),
+		 SUM("Venta Neto")
+FROM  "Cuzco cognos" 
+GROUP BY "Matricula",
+	  ABSMONTH("Fecha Venta") 
+    
+    SELECT *
+FROM  "Cuzco clientes" AS  cuzco LEFT JOIN "Cuzco PRE ITV v.2" AS  preitv ON cuzco.matr  = preitv.matricula  
+
+SELECT *
+FROM  "FACT cuzco test" AS  cuzco LEFT JOIN "Cuzco cc" AS  preitvcc ON cuzco.Matr  = preitvcc.Matricula2  
