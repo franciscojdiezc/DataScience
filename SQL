@@ -9,8 +9,7 @@ FROM  "Cuzco cognos"
 GROUP BY "Matricula",
 	  ABSMONTH("Fecha Venta") 
     
-    SELECT *
-FROM  "Cuzco clientes" AS  cuzco LEFT JOIN "Cuzco PRE ITV v.2" AS  preitv ON cuzco.matr  = preitv.matricula  
-
 SELECT *
-FROM  "FACT cuzco test" AS  cuzco LEFT JOIN "Cuzco cc" AS  preitvcc ON cuzco.Matr  = preitvcc.Matricula2  
+FROM  "Cuzco clientes" AS  cuzco 
+LEFT JOIN "Cuzco PRE ITV v.2" AS  preitv ON cuzco.matr  = preitv.matricula  
+LEFT JOIN "Cuzco cc" AS  preitvcc ON cuzco.matr  = preitvcc.Matricula2  
