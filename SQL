@@ -1,15 +1,17 @@
 SELECT
-		 "Matricula",
-		 GROUP_FIRST("Punto Venta"),
-		 DATE(GROUP_FIRST("Fecha Venta")),
-		 GROUP_FIRST("Kms Medios"),
-		 SUM("Mg Bruto"),
-		 SUM("Venta Neto")
-FROM  "Cuzco cognos" 
-GROUP BY "Matricula",
-	  ABSMONTH("Fecha Venta") 
-    
+		 "Column1",
+		 GROUP_FIRST("Column2"),
+		 DATE(GROUP_FIRST("Column3")),
+		 GROUP_FIRST("Column4"),
+		 SUM("Column5"),
+		 SUM("Column6")
+FROM  "Table1" 
+GROUP BY "Column1",
+	  ABSMONTH("Column3") 
+
+#The name of the new table is "Group by column1"
+
 SELECT *
-FROM  "Cuzco clientes" AS  cuzco 
-LEFT JOIN "Cuzco PRE ITV v.2" AS  preitv ON cuzco.matr  = preitv.matricula  
-LEFT JOIN "Cuzco cc" AS  preitvcc ON cuzco.matr  = preitvcc.Matricula2  
+FROM  "Tabla2" AS  tb2
+LEFT JOIN "Group by column1" AS  gcolumn1 ON tb2.matr  = gcolumn1.matricula  
+LEFT JOIN "table3" AS  tb3 ON tb2.matr  = tb3.Matricula2  
