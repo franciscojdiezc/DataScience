@@ -1,5 +1,4 @@
 library(tools)
-install.packages("rlist")
 library(rvest)
 library(rlist)
 
@@ -8,7 +7,7 @@ length(home)
 files
 
 ## SIN ROJA ##
-sinroja = read_html('sinroja.html')
+sinroja = read_html('sinamarillaprimeraparte.html')
 
 home = html_nodes(sinroja, "div.statText--homeValue") %>% html_text()
 
@@ -125,7 +124,44 @@ test = rbind(test,data)
 write.csv(rojaprimera, file = "rojaprimera.csv")
 
 
+## SIN AMARILLAS ##
+sinroja = read_html('sinamarillaprimeraparte.html')
 
+home = html_nodes(sinroja, "div.statText--homeValue") %>% html_text()
+
+length(home)
+
+away = html_nodes(sinroja, "div.statText--awayValue") %>% html_text()
+primerapartehome = html_nodes(sinroja, "span.p1_home") %>% html_text()
+primerapartehome = gsub('\n','',primerapartehome)
+primeraparteaway = html_nodes(sinroja, "span.p1_away") %>% html_text()
+primeraparteaway = gsub('\n','',primeraparteaway)
+segundapartehome = html_nodes(sinroja, "span.p2_home") %>% html_text()
+segundapartehome = gsub('\n','',segundapartehome)
+segundaparteaway = html_nodes(sinroja, "span.p2_away")%>% html_text()
+segundaparteaway = gsub('\n','',segundaparteaway)
+fecha = html_nodes(sinroja,"div.mstat-date") %>% html_text()
+
+partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+
+nombres = html_nodes(sinroja, "div.statText--titleValue") %>% html_text()
+
+nombrecasa = paste(nombres, '_home', sep = "")
+nombresfuera = paste(nombres, '_away', sep = "")
+
+columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+
+columns = unlist(columns)
+
+df <- data.frame(matrix(unlist(partido), byrow=T))
+
+data<- as.data.frame(t(df))
+
+colnames(data) <- columns
+
+sinrojas = data[FALSE,]
+
+write.csv(sinrojas, file = "sinamarillasprimeraparte.csv")
 
 
 
