@@ -30,11 +30,13 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
-    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
+                   ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
-    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+                   'ligajornada','equipolocal', 'equipovisitante')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -52,11 +54,21 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
-    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+    ligajornada = html_nodes(html, "div.fleft") %>% html_text()
+    ligajornada = gsub('\t','',ligajornada)
+    ligajornada = gsub('\n','',ligajornada)
+    teams = html_nodes(html, "div.tname__text") %>% html_text()
+    teams = gsub('\t','',teams)
+    teams = gsub('\n','',teams)
+    equipolocal = teams[1]
+    equipovisitante = teams[2]
+    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
+                   ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
-    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+                   'ligajornada','equipolocal', 'equipovisitante')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -74,11 +86,21 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
-    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+    ligajornada = html_nodes(html, "div.fleft") %>% html_text()
+    ligajornada = gsub('\t','',ligajornada)
+    ligajornada = gsub('\n','',ligajornada)
+    teams = html_nodes(html, "div.tname__text") %>% html_text()
+    teams = gsub('\t','',teams)
+    teams = gsub('\n','',teams)
+    equipolocal = teams[1]
+    equipovisitante = teams[2]
+    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
+                   ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
-    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+                   'ligajornada','equipolocal', 'equipovisitante')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -96,11 +118,21 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
-    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+    ligajornada = html_nodes(html, "div.fleft") %>% html_text()
+    ligajornada = gsub('\t','',ligajornada)
+    ligajornada = gsub('\n','',ligajornada)
+    teams = html_nodes(html, "div.tname__text") %>% html_text()
+    teams = gsub('\t','',teams)
+    teams = gsub('\n','',teams)
+    equipolocal = teams[1]
+    equipovisitante = teams[2]
+    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
+                   ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
-    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+                   'ligajornada','equipolocal', 'equipovisitante')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -118,11 +150,21 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
-    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+    ligajornada = html_nodes(html, "div.fleft") %>% html_text()
+    ligajornada = gsub('\t','',ligajornada)
+    ligajornada = gsub('\n','',ligajornada)
+    teams = html_nodes(html, "div.tname__text") %>% html_text()
+    teams = gsub('\t','',teams)
+    teams = gsub('\n','',teams)
+    equipolocal = teams[1]
+    equipovisitante = teams[2]
+    partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
+                   ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
-    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+    columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+                   'ligajornada','equipolocal', 'equipovisitante')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))

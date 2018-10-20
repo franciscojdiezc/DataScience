@@ -24,14 +24,28 @@ segundaparteaway = html_nodes(sinroja, "span.p2_away")%>% html_text()
 segundaparteaway = gsub('\n','',segundaparteaway)
 fecha = html_nodes(sinroja,"div.mstat-date") %>% html_text()
 
-partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha)
+ligajornada = html_nodes(sinroja, "div.fleft") %>% html_text()
+ligajornada = gsub('\t','',ligajornada)
+ligajornada = gsub('\n','',ligajornada)
+
+teams = html_nodes(sinroja, "div.tname__text") %>% html_text()
+teams = gsub('\t','',teams)
+teams = gsub('\n','',teams)
+
+equipolocal = teams[1]
+equipovisitante = teams[2]
+
+  
+partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, 
+               fecha, ligajornada, equipolocal, equipovisitante)
 
 nombres = html_nodes(sinroja, "div.statText--titleValue") %>% html_text()
 
 nombrecasa = paste(nombres, '_home', sep = "")
 nombresfuera = paste(nombres, '_away', sep = "")
 
-columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha')
+columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
+               'ligajornada','equipolocal', 'equipovisitante')
 
 columns = unlist(columns)
 
@@ -43,7 +57,7 @@ colnames(data) <- columns
 
 sinrojas = data[FALSE,]
 
-write.csv(sinrojas, file = "sinrojas.csv")
+write.csv(sinrojas, file = "sinamarillasprimeraparte.csv")
 
 ## CON ROJA ##
 
