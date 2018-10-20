@@ -30,6 +30,14 @@ for (file in files) {
     segundaparteaway = html_nodes(html, "span.p2_away")%>% html_text()
     segundaparteaway = gsub('\n','',segundaparteaway)
     fecha = html_nodes(html,"div.mstat-date") %>% html_text()
+    ligajornada = html_nodes(html, "div.fleft") %>% html_text()
+    ligajornada = gsub('\t','',ligajornada)
+    ligajornada = gsub('\n','',ligajornada)
+    teams = html_nodes(html, "div.tname__text") %>% html_text()
+    teams = gsub('\t','',teams)
+    teams = gsub('\n','',teams)
+    equipolocal = teams[1]
+    equipovisitante = teams[2]
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
                    ligajornada, equipolocal, equipovisitante)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
