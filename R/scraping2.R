@@ -2,13 +2,13 @@ library(tools)
 library(rvest)
 library(rlist)
 
-sinrojas = read.csv('sinrojas.csv')
-conrojas = read.csv('conrojas.csv')
+sinrojas = read.csv('sinroja.csv')
+conrojas = read.csv('conroja.csv')
 rojaprimera = read.csv('rojaprimera.csv')
 sinamarillas = read.csv('sinamarillas.csv')
 sinamarillaprimera = read.csv('sinamarillasprimeraparte.csv')
 
-files <- list.files(path=".", pattern="*.html", all.files=T, full.names=T)
+files <- list.files(path="spain", pattern="*.html", all.files=T, full.names=T)
 
 files
 count = 0
@@ -38,13 +38,16 @@ for (file in files) {
     teams = gsub('\n','',teams)
     equipolocal = teams[1]
     equipovisitante = teams[2]
+    cuotas = html_nodes(html, "div.odds-wrapper") %>% html_text()
+    cuotas = gsub('\t', '', cuotas)
+    cuotas = gsub('\n', ' ', cuotas)
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
-                   ligajornada, equipolocal, equipovisitante)
+                   ligajornada, equipolocal, equipovisitante, cuotas)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
     columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-                   'ligajornada','equipolocal', 'equipovisitante')
+                   'ligajornada','equipolocal', 'equipovisitante', 'cuotas')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -70,13 +73,16 @@ for (file in files) {
     teams = gsub('\n','',teams)
     equipolocal = teams[1]
     equipovisitante = teams[2]
+    cuotas = html_nodes(html, "div.odds-wrapper") %>% html_text()
+    cuotas = gsub('\t', '', cuotas)
+    cuotas = gsub('\n', ' ', cuotas)
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
-                   ligajornada, equipolocal, equipovisitante)
+                   ligajornada, equipolocal, equipovisitante, cuotas)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
     columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-                   'ligajornada','equipolocal', 'equipovisitante')
+                   'ligajornada','equipolocal', 'equipovisitante', 'cuotas')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -102,13 +108,16 @@ for (file in files) {
     teams = gsub('\n','',teams)
     equipolocal = teams[1]
     equipovisitante = teams[2]
+    cuotas = html_nodes(html, "div.odds-wrapper") %>% html_text()
+    cuotas = gsub('\t', '', cuotas)
+    cuotas = gsub('\n', ' ', cuotas)
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
-                   ligajornada, equipolocal, equipovisitante)
+                   ligajornada, equipolocal, equipovisitante, cuotas)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
     columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-                   'ligajornada','equipolocal', 'equipovisitante')
+                   'ligajornada','equipolocal', 'equipovisitante', 'cuotas')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -134,13 +143,16 @@ for (file in files) {
     teams = gsub('\n','',teams)
     equipolocal = teams[1]
     equipovisitante = teams[2]
+    cuotas = html_nodes(html, "div.odds-wrapper") %>% html_text()
+    cuotas = gsub('\t', '', cuotas)
+    cuotas = gsub('\n', ' ', cuotas)
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
-                   ligajornada, equipolocal, equipovisitante)
+                   ligajornada, equipolocal, equipovisitante, cuotas)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
     columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-                   'ligajornada','equipolocal', 'equipovisitante')
+                   'ligajornada','equipolocal', 'equipovisitante', 'cuotas')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -166,13 +178,16 @@ for (file in files) {
     teams = gsub('\n','',teams)
     equipolocal = teams[1]
     equipovisitante = teams[2]
+    cuotas = html_nodes(html, "div.odds-wrapper") %>% html_text()
+    cuotas = gsub('\t', '', cuotas)
+    cuotas = gsub('\n', ' ', cuotas)
     partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, fecha,
-                   ligajornada, equipolocal, equipovisitante)
+                   ligajornada, equipolocal, equipovisitante, cuotas)
     nombres = html_nodes(html, "div.statText--titleValue") %>% html_text()
     nombrecasa = paste(nombres, '_home', sep = "")
     nombresfuera = paste(nombres, '_away', sep = "")
     columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-                   'ligajornada','equipolocal', 'equipovisitante')
+                   'ligajornada','equipolocal', 'equipovisitante', 'cuotas')
     columns = unlist(columns)
     df <- data.frame(matrix(unlist(partido), byrow=T))
     data<- as.data.frame(t(df))
@@ -181,3 +196,16 @@ for (file in files) {
   } else {
     count = count + 1}
 }
+
+#GUARDAR
+
+{
+write.csv(sinrojas, file = "datos/sinrojas.csv")
+write.csv(conrojas, file = "datos/conrojas.csv")
+write.csv(rojaprimera, file = "datos/rojaprimera.csv")
+write.csv(sinamarillas, file = "datos/sinamarillas.csv")
+write.csv(sinamarillaprimera, file = "datos/sinamarillasprimeraparte.csv")
+}
+
+
+

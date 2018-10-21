@@ -7,7 +7,7 @@ length(home)
 files
 
 ## SIN ROJA ##
-sinroja = read_html('sinamarillaprimeraparte.html')
+sinroja = read_html('backup/sinamarillaprimeraparte.html')
 
 home = html_nodes(sinroja, "div.statText--homeValue") %>% html_text()
 
@@ -35,9 +35,12 @@ teams = gsub('\n','',teams)
 equipolocal = teams[1]
 equipovisitante = teams[2]
 
+cuotas = html_nodes(sinroja, "div.odds-wrapper") %>% html_text()
+cuotas = gsub('\t', '', cuotas)
+cuotas = gsub('\n', ' ', cuotas)
   
 partido = list(home,away,primerapartehome,primeraparteaway,segundapartehome,segundaparteaway, 
-               fecha, ligajornada, equipolocal, equipovisitante)
+               fecha, ligajornada, equipolocal, equipovisitante, cuotas)
 
 nombres = html_nodes(sinroja, "div.statText--titleValue") %>% html_text()
 
@@ -45,7 +48,7 @@ nombrecasa = paste(nombres, '_home', sep = "")
 nombresfuera = paste(nombres, '_away', sep = "")
 
 columns = list(nombrecasa,nombresfuera,'goleshomep1', 'golesawayp1','goleshomep2','golesawayp2','fecha',
-               'ligajornada','equipolocal', 'equipovisitante')
+               'ligajornada','equipolocal', 'equipovisitante',"cuotas")
 
 columns = unlist(columns)
 
@@ -58,6 +61,18 @@ colnames(data) <- columns
 sinrojas = data[FALSE,]
 
 write.csv(sinrojas, file = "sinamarillasprimeraparte.csv")
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## CON ROJA ##
 
