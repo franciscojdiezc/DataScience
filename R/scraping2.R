@@ -8,7 +8,7 @@ rojaprimera = read.csv('rojaprimera.csv')
 sinamarillas = read.csv('sinamarillas.csv')
 sinamarillaprimera = read.csv('sinamarillasprimeraparte.csv')
 
-files <- list.files(path="spain", pattern="*.html", all.files=T, full.names=T)
+files <- list.files(path="spain/1314", pattern="*.html", all.files=T, full.names=T)
 
 files
 count = 0
@@ -17,6 +17,8 @@ for (file in files) {
   
   html = read_html(file)
   home = html_nodes(html, "div.statText--homeValue") %>% html_text()
+
+try(
   
   if (length(home) == 36) {
     home = html_nodes(html, "div.statText--homeValue") %>% html_text()
@@ -194,18 +196,12 @@ for (file in files) {
     colnames(data) <- columns
     sinamarillas = rbind(sinamarillas,data)
   } else {
-    count = count + 1}
-}
-
-#GUARDAR
-
-{
-write.csv(sinrojas, file = "datos/sinrojas.csv")
-write.csv(conrojas, file = "datos/conrojas.csv")
-write.csv(rojaprimera, file = "datos/rojaprimera.csv")
-write.csv(sinamarillas, file = "datos/sinamarillas.csv")
-write.csv(sinamarillaprimera, file = "datos/sinamarillasprimeraparte.csv")
+    count = count + 1
+    print(length(home))+print(file)}
+, silent = TRUE)
+  
 }
 
 
 
+names(conrojas)[2:14]<- paste(names(conrojas)[2:14], '_fullmatch', sep = "")
